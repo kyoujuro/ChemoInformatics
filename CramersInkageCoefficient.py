@@ -1,7 +1,7 @@
 class CramersInkageCoefficient(object):
     """
     クラメールの連関係数を計算する。
-    
+
     Attribute
     ----------
     list_x : list
@@ -9,16 +9,17 @@ class CramersInkageCoefficient(object):
     list_y : list
         2つ目の変数のリスト。
     """
-    
+
     def __init__(self, list_x, list_y):
         self._list_x = list_x
         self._list_y = list_y
         if isinstance(list_x, list) and isinstance(list_y, list):
             pass
-        elif not isinstance(list_x, list) :
+        elif not isinstance(list_x, list):
             raise ValueError(f'引数{list_x}はlist型ではありません。')
         else:
-             raise ValueError(f'引数{list_y}はlist型ではありません。')
+            raise ValueError(f'引数{list_y}はlist型ではありません。')
+
     def _cramersV(self):
         """
         Returns
@@ -32,7 +33,7 @@ class CramersInkageCoefficient(object):
         row_sum = table.sum(axis=1)
         expect_value = np.outer(row_sum, col_sum) / n
         chisq = np.sum((table - expect_value) ** 2 / expect_value)
-        return np.sqrt(chisq / (n * np.min(table.shape) - 1))
+        return np.sqrt(chisq / (n * (np.min(table.shape) - 1)))
 
     def inkage_confficient(self):
         name = []

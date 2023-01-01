@@ -11,9 +11,14 @@ class CramersInkageCoefficient(object):
     """
     
     def __init__(self, list_x, list_y):
-        self.list_x = list_x
-        self.list_y = list_y
-
+        self._list_x = list_x
+        self._list_y = list_y
+        if isinstance(list_x, list) and isinstance(list_y, list):
+            pass
+        elif not isinstance(list_x, list) :
+            raise ValueError(f'引数{list_x}はlist型ではありません。')
+        else:
+             raise ValueError(f'引数{list_y}はlist型ではありません。')
     def _cramersV(self):
         """
         Returns
@@ -21,7 +26,7 @@ class CramersInkageCoefficient(object):
         np.sqrt(chisq / (n * np.min(table.shape) - 1)) : float
         クラメールの連関係数。
         """
-        table = np.array(pd.crosstab(self.list_x, self.list_y))
+        table = np.array(pd.crosstab(self._list_x, self._list_y))
         n = table.sum()
         col_sum = table.sum(axis=0)
         row_sum = table.sum(axis=1)

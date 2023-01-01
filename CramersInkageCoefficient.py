@@ -1,3 +1,5 @@
+import numpy as np
+
 class CramersInkageCoefficient(object):
     """
     クラメールの連関係数を計算する。

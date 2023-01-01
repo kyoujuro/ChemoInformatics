@@ -1,10 +1,26 @@
-class CramersInkageCoefficient:
-
+class CramersInkageCoefficient(object):
+    """
+    クラメールの連関係数を計算する。
+    
+    Attribute
+    ----------
+    list_x : list
+        １つ目の変数のリスト。
+    list_y : list
+        2つ目の変数のリスト。
+    """
+    
     def __init__(self, list_x, list_y):
         self.list_x = list_x
         self.list_y = list_y
 
     def _cramersV(self):
+        """
+        Returns
+        -------
+        np.sqrt(chisq / (n * np.min(table.shape) - 1)) : float
+        クラメールの連関係数。
+        """
         table = np.array(pd.crosstab(self.list_x, self.list_y))
         n = table.sum()
         col_sum = table.sum(axis=0)
